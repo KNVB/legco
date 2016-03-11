@@ -14,7 +14,7 @@ public class ReadData {
 	public static void main(String[] args) 
 	{
 		Vector<String> memberDetailLinks=new Vector<String>();
-		String detailsClassName="bio-member-detail-1",memberName,strSQL=new String();
+		String detailsClassName="bio-member-detail-1",memberName,strSQL=new String(),term="12-16";
 		String theURL = "http://www.legco.gov.hk/general/chinese/members/yr12-16/biographies.htm";
 		DbOp dbo=null;
 		try 
@@ -47,7 +47,7 @@ public class ReadData {
 					{
 						//System.out.println("Member Name="+memberName+",Party="+liElement.text());
 						strSQL ="insert into member_to_party (term,member_name,party_name)values";
-						strSQL+="('12-16','"+memberName+"','"+liElement.text()+"')";
+						strSQL+="('"+term+"','"+memberName+"','"+liElement.text()+"')";
 						dbo.executeUpdate(strSQL);
 					}
 				}
@@ -55,7 +55,7 @@ public class ReadData {
 				{
 					//System.out.println("Member Name="+memberName+",Party=-");
 					strSQL="insert into member_to_party (term,member_name,party_name)values";
-					strSQL+="('12-16','"+memberName+"','-')";
+					strSQL+="('"+term+"','"+memberName+"','-')";
 					dbo.executeUpdate(strSQL);
 				}
 				
